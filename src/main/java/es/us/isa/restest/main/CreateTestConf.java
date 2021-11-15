@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 public class CreateTestConf {
 
     private static final Logger log = LogManager.getLogger(CreateTestConf.class);
-    private static String openApiSpecPath = "src/test/resources/Folder/openapi.yaml";			                                // OAS file path
+    private static String openApiSpecPath = "src/test/resources/Move/rfq-test-reduced.yaml";			                                // OAS file path
     private static String confPath;																// Test configuration path
 
     
@@ -111,6 +111,6 @@ public class CreateTestConf {
     private static void generateTestConfPath() {
         String[] sp = openApiSpecPath.split("/");
         int end = sp[sp.length-1].isEmpty()? sp.length-2 : sp.length-1;
-        confPath = Arrays.stream(sp, 0, end).collect(Collectors.joining("/", "", "/testConf.yaml"));
+        confPath = Arrays.stream(sp, 0, end).collect(Collectors.joining("/", "", "/reducedConf.yaml"));
     }
 }

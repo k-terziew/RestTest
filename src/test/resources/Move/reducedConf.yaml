@@ -1,0 +1,163 @@
+---
+auth:
+  required: true
+  queryParams: {}
+  headerParams: {}
+  apiKeysPath: null
+  headersPath: null
+  oauthPath: null
+testConfiguration:
+  operations:
+  - testPath: "/api/app/rfq/{id}"
+    operationId: getById_1
+    method: get
+    testParameters:
+    - name: id
+      in: path
+      weight: null
+      generators:
+      - type: RandomInputValue
+        genParameters:
+        - name: values
+          values:
+          - 6c5ae537-01f5-408c-aa6e-a65cb32636ec
+          - e0d6d428-1e29-4297-a916-e8a65e0c5cfd
+          - b3862d18-1e9e-4c95-bde1-1bed93d89167
+          - 215c2931-7331-44be-9db0-c6aea8fd9afe
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/app/rfq/search"
+    operationId: searchRfqs
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: 0.5
+      generators:
+      - type: RandomInputValue
+        genParameters:
+        - name: values
+          values:
+          - "{\"query\":\"6c5ae537-01f5-408c-aa6e-a65cb32636ec\"}"
+          - "{\"query\":\"e0d6d428-1e29-4297-a916-e8a65e0c5cfd\"}"
+          - "{\"query\":\"b3862d18-1e9e-4c95-bde1-1bed93d89167\"}"
+          - "{\"query\":\"215c2931-7331-44be-9db0-c6aea8fd9afe\"}"
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/app/rfq/validate"
+    operationId: validate
+    method: put
+    testParameters:
+    - name: body
+      in: body
+      weight: 0.5
+      generators:
+      - type: RandomObject
+        genParameters:
+        - name: files
+          values:
+          - src/main/java/es/us/isa/restest/inputs/rfq/AutoRC.json
+          - src/main/java/es/us/isa/restest/inputs/rfq/ABRC.json
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/app/rfq/requester/rfq/elaborations"
+    operationId: requestNewElaboration
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: 0.5
+      generators:
+      - type: RandomObject
+        genParameters:
+        - name: files
+          values:
+          - src/main/java/es/us/isa/restest/inputs/rfq/ABRC_elab.json
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/app/rfq/summary"
+    operationId: generateSummary_2
+    method: post
+    testParameters:
+    - name: body
+      in: body
+      weight: 0.5
+      generators:
+      - type: RandomObject
+        genParameters:
+        - name: files
+          values:
+          - src/main/java/es/us/isa/restest/inputs/rfq/ABRCSummary.json
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/app/rfq"
+    operationId: createRfq
+    method: get
+    testParameters:
+    - name: productType
+      in: query
+      weight: 0.5
+      generators:
+      - type: RandomInputValue
+        genParameters:
+        - name: values
+          values:
+          - AIRBAG_CERTIFICATE
+          - AUTOCALLABLE_AIRBAG_CERTIFICATE
+          - AUTOCALLABLE_BONUS_CERTIFICATE
+          - BONUS_CERTIFICATE
+          - BRC
+          - ABRC
+          - CBRC
+          - RC
+          - ARC
+          - CRC
+          - PRO_NOTE
+          - CALLABLE_PRO_NOTE
+          - AUTOCALLABLE_PRO_NOTE
+          - PRO_NOTE_WITH_LIMITED_PARTICIPATION
+          - PRO_NOTE_WITH_TWIN_WIN_PARTICIPATION
+          - GENERIC_PRODUCT
+          - RATE_NOTE
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+  - testPath: "/api/app/rfq"
+    operationId: update
+    method: put
+    testParameters:
+    - name: body
+      in: body
+      weight: 0.5
+      generators:
+      - type: RandomObject
+        genParameters:
+        - name: files
+          values:
+          - src/main/java/es/us/isa/restest/inputs/rfq/ABRC_elab_response.json
+          - src/main/java/es/us/isa/restest/inputs/rfq/ABRC_rfqPost.json
+          objectValues: null
+        valid: true
+    expectedResponse: 200
+#  - testPath: "/api/app/rfq"
+#    operationId: save
+#    method: post
+#    testParameters:
+#    - name: body
+#      in: body
+#      weight: 0.5
+#      generators:
+#      - type: RandomObject
+#        genParameters:
+#        - name: files
+#          values:
+#          - src/main/java/es/us/isa/restest/inputs/rfq/ABRC_elab_response.json
+#          - src/main/java/es/us/isa/restest/inputs/rfq/ABRC_rfqPost.json
+#          objectValues: null
+#        valid: true
+#    expectedResponse: 200
